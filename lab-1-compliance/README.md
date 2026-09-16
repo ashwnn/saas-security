@@ -40,12 +40,15 @@ Write a one-paragraph scope statement covering:
 4. data types and trust boundaries;
 5. exclusions and why they do not threaten the scope.
 
+> InvoiceFlow is a B2B SaaS application for creating and managing customer invoices, together with the production environment that delivers and supports the service: the Python application running on Azure Kubernetes Service (AKS), Azure Blob Storage, Azure Database for PostgreSQL, production backups, and the supporting systems and third-party services used to develop, operate, monitor, support, and secure the service, including cloud hosting, source control, customer support, payment, and email providers. The scope covers all personnel who administer, develop, support, or access production systems, including staff working from the Burnaby office and remote locations. It includes customer and user data processed by the service, such as names and email addresses, invoice contents, related notes, account data, and any financial information contained in invoices, as it crosses trust boundaries among users, InvoiceFlow’s application and personnel, Azure services, and relevant subprocessors. Non-production environments, personal devices not approved for company access, and systems unrelated to delivering or supporting InvoiceFlow are excluded because they do not store, process, or provide administrative access to production customer data or the production service.
+
+
 Then answer:
 
-- For SOC 2, which Trust Services Categories would you include initially?
-- For ISO/IEC 27001, what is the ISMS boundary?
-- Which subservice organizations or vendors are relied upon?
-- Which customer responsibilities are complementary user-entity controls rather than InvoiceFlow controls?
+- For SOC 2, which Trust Services Categories would you include initially? Securitiy & Confientialy are the two most important categories as we don't wnat the data getting leaked or seen by those that are not intended.
+- For ISO/IEC 27001, what is the ISMS boundary? The main boundary is Azure however we do control/manage this so it would be a dependency, in this case it would be the employees who work/develop on the application as well as support and anyone who interacts with it that aren't clients.
+- Which subservice organizations or vendors are relied upon? Azure is the key organization as it handles everything from CI/CD to k8s, we also depend on: Stripe (payment processing), Azure Foundy (AI Processing), Lenovo (Computer/Hardware Providers + Support).
+- Which customer responsibilities are complementary user-entity controls rather than InvoiceFlow controls? The customer is responsible for following and configuring their enviornment such as enforcing MFA, password policies etc. InvoiceFlow is reponsible for ensuring that customer data is securely stored and accurately and safely delivering the promised service alongside support and service for the core application and realted. 
 
 Recommended starting position: use the SOC 2 Security category first. Add Availability only if the company is prepared to support the 99.9% commitment with monitoring, incident records, capacity management, backup/restore evidence, and availability calculations. Security is the required common category in a SOC 2 examination; the other categories are selected based on commitments and risk.
 
