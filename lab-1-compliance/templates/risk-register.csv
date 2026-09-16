@@ -1,0 +1,8 @@
+risk_id,asset_or_process,threat_or_event,business_impact,existing_controls,likelihood_1_5,impact_1_5,inherent_score,treatment,planned_action,owner,due_date,residual_likelihood_1_5,residual_impact_1_5,residual_score,review_date,status
+R-001,Production access,Unauthorized privileged access,Customer data disclosure and service disruption,MFA for administrators,,,,Mitigate,,,,,,,Open
+R-002,Software supply chain,Vulnerable dependency reaches production,Application compromise,Occasional scanning,,,,Mitigate,,,,,,,Open
+R-003,Change management,Unreviewed change reaches production,Outage or security regression,Pull requests normally used,,,,Mitigate,,,,,,,Open
+R-004,Support and logging,Customer data enters inappropriate system,Confidentiality breach,Informal staff guidance,,,,Mitigate,,,,,,,Open
+R-005,Backup and recovery,Backup cannot be restored within RTO,Extended outage,Daily backups,,,,Mitigate,,,,,,,Open
+R-006,Critical vendors,Provider failure or compromise,Loss of service or confidentiality,Contracts exist,,,,Mitigate,,,,,,,Open
+

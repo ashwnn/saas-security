@@ -1,0 +1,39 @@
+name: secure-ci-example
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-scan:
+    runs-on: ubuntu-latest
+    steps:
+      # For production, pin third-party actions to reviewed immutable commit SHAs.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt pip-audit semgrep
+      - run: pytest -q
+      - run: pip-audit -r requirements.txt
+      - run: semgrep --config=p/python --config=p/owasp-top-ten --error .
+      - uses: gitleaks/gitleaks-action@v2
+      - run: docker build -t invoiceflow:${{ github.sha }} .
+      - uses: aquasecurity/trivy-action@0.32.0
+        with:
+          image-ref: invoiceflow:${{ github.sha }}
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+      - uses: anchore/sbom-action@v0
+        with:
+          image: invoiceflow:${{ github.sha }}
+          artifact-name: invoiceflow-${{ github.sha }}.spdx.json
+
