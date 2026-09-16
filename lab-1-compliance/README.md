@@ -45,10 +45,10 @@ Write a one-paragraph scope statement covering:
 
 Then answer:
 
-- For SOC 2, which Trust Services Categories would you include initially? Securitiy & Confientialy are the two most important categories as we don't wnat the data getting leaked or seen by those that are not intended.
-- For ISO/IEC 27001, what is the ISMS boundary? The main boundary is Azure however we do control/manage this so it would be a dependency, in this case it would be the employees who work/develop on the application as well as support and anyone who interacts with it that aren't clients.
-- Which subservice organizations or vendors are relied upon? Azure is the key organization as it handles everything from CI/CD to k8s, we also depend on: Stripe (payment processing), Azure Foundy (AI Processing), Lenovo (Computer/Hardware Providers + Support).
-- Which customer responsibilities are complementary user-entity controls rather than InvoiceFlow controls? The customer is responsible for following and configuring their enviornment such as enforcing MFA, password policies etc. InvoiceFlow is reponsible for ensuring that customer data is securely stored and accurately and safely delivering the promised service alongside support and service for the core application and realted. 
+- For SOC 2, which Trust Services Categories would you include initially? Security & Availability will be the two trust categories we include later on following with confidentiality. We include security as a default as it is one of the most funamental controls, for availability we require this as we boast a 99.9% uptime commitment.
+- For ISO/IEC 27001, what is the ISMS boundary? For the case of Invoice Flow we could define the scope as: employees, contractors supporting (customer), development and devops personell who work on the application itself, production technology stack, the physical office itself and remote setups, customer data handled by InvoiceFlow.
+- Which subservice organizations or vendors are relied upon? Azure (Cloud Provider), GitHub, Zendesk (Customer Support), Stripe (Payment Provider), M365 (Email Provider)
+- Which customer responsibilities are complementary user-entity controls rather than InvoiceFlow controls? The client is in charge of: user management (on InvoiceFlow), RBAC, Credential Control, Accurate Information (for invoices), Reporting Issues and/or compromises, Securing Integrations. 
 
 Recommended starting position: use the SOC 2 Security category first. Add Availability only if the company is prepared to support the 99.9% commitment with monitoring, incident records, capacity management, backup/restore evidence, and availability calculations. Security is the required common category in a SOC 2 examination; the other categories are selected based on commitments and risk.
 
